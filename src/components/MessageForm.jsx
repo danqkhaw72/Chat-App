@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { sendMessage, isTyping } from 'react-chat-engine';
 import { SendOutlined, PictureOutlined } from '@ant-design/icons';
 
-const MessageForm = () => {
+const MessageForm = (props) => {
     const [value, setValue] = useState('');
     const { chatId, creds } = props;
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         const text = value.trim();
@@ -45,7 +45,7 @@ const MessageForm = () => {
                 multiple={false}
                 id="upload-button"
                 style={{ display: 'none' }}
-                onChange={handleUpload}
+                onChange={handleUpload.bind(this)}
             />
             <button type="submit" className="send-button">
                 <SendOutlined className="send-icon" />
